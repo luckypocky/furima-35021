@@ -29,42 +29,44 @@ Things you may want to cover:
 
 | Column     | Type   | Options     |
 | ---------- | ------ | ----------- |
+| nickname   | string | NOT NULL    |
 | email      | string | NOT NULL    |
 | password   | string | NOT NULL    |
-| name       | string | NOT NULL    |
-| profile    | text   | NOT NULL    |
-| occupation | text   | NOT NULL    |
-| position   | text   | NOT NULL    |
+| name_kanji | string | NOT NULL    |
+| name_kana  | string | NOT NULL    |
 
 ### Association
 
-- has_many :prototypes
-- has_many :comments
+- has_many :items
+- has_many :purchases
 
-## comments テーブル
+## items テーブル
 
-| Column    | Type       | Options     |
-| --------- | ---------- | ----------- |
-| text      | text       | NOT NULL    |
-| user      | references |             |
-| prototype | string     |             |
-
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| item_name     | string     | NOT NULL    |
+| explanation   | integer    | NOT NULL    |
+| price         | integer    | NOT NULL    |
 ### Association
 
 - belongs_to :users
-- belongs_to :prototypes
+- has_many :items
 
-## prototypes テーブル
+## purchases テーブル
 
-| Column     | Type       | Options     |
-| ---------- | ---------- | ----------- |
-| title      | string     | NOT NULL    |
-| catch_copy | text       | NOT NULL    |
-| concept    | text       | NOT NULL    |
-| user       | references |             |
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| credit_card_number | integer    | NOT NULL    |
+| expiration_date    | integer    | NOT NULL    |
+| security_code      | integer    | NOT NULL    |
+| postal_code        | integer    | NOT NULL    |
+| municipality       | string     | NOT NULL    |
+| address            | string     | NOT NULL    |
+| building_name      | string     |             |
+| phone_number       | integer    | NOT NULL    |
 
 
 ### Association
 
-- has_many :comments
+- has_many :items
 - belongs_to :users
