@@ -45,51 +45,61 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column        | Type       | Options     |
-| ------------- | ---------- | ----------- |
-| item_name     | string     | NOT NULL    |
-| explanation   | integer    | NOT NULL    |
-| category_id   | integer    | NOT NULL    |
-| condition_id  | integer    | NOT NULL    |
-| charge_id     | integer    | NOT NULL    |
-| prefecture_id | integer    | NOT NULL    |
-| number_day_id | integer    | NOT NULL    |
-| price         | integer    | NOT NULL    |
-| user_id       | integer    | NOT NULL    |
+| Column        | Type       | Options          |
+| ------------- | ---------- | ---------------- |
+| item_name     | string     | NOT NULL         |
+| explanation   | text       | NOT NULL         |
+| category_id   | integer    | NOT NULL         |
+| condition_id  | integer    | NOT NULL         |
+| charge_id     | integer    | NOT NULL         |
+| prefecture_id | integer    | NOT NULL         |
+| number_day_id | integer    | NOT NULL         |
+| price         | integer    | NOT NULL         |
+| user_id       | integer    | foreign_key:true |
+### Association
+
+- belongs_to :user
+- has_one :purchase
+
+## purchases テーブル
+
+| Column             | Type       | Options         |
+| ------------------ | ---------- | --------------- |
+| phone_number       | string     | NOT NULL        |
+| user_purchase_id   | integer    | foreign_key:true|
+
+
+### Association
+
+- belongs_to :item
+- has_many :user_purchases
+- has_one :adress
+
+## user_purchases テーブル
+
+| Column             | Type       | Options         |
+| ------------------ | ---------- | --------------- |
+| user_id            | integer    | foreign_key:true|
+| purchase_id        | integer    | foreign_key:true|
+
+
+
 ### Association
 
 - belongs_to :user
 - belongs_to :purchase
 
-## purchases テーブル
+## addresses テーブル
 
-| Column             | Type       | Options     |
-| ------------------ | ---------- | ----------- |
-| expiration_date    | integer    | NOT NULL    |
-| security_code      | integer    | NOT NULL    |
-| postal_code        | string     | NOT NULL    |
-| municipality       | string     | NOT NULL    |
-| address            | string     | NOT NULL    |
-| building_name      | string     |             |
-| phone_number       | string     | NOT NULL    |
-| user_purchase_id   | integer    | NOT NULL    |
-
-
-### Association
-
-- has_many :items
-- has_many :user_purchases
-
-## user_purchases テーブル
-
-| Column             | Type       | Options     |
-| ------------------ | ---------- | ----------- |
-| user_id            | integer    | NOT NULL    |
-| purchase_id        | integer    | NOT NULL    |
+| Column             | Type       | Options         |
+| ------------------ | ---------- | --------------- |
+| postal_code        | string     | NOT NULL        |
+| municipality       | string     | NOT NULL        |
+| address            | string     | NOT NULL        |
+| building_name      | string     |                 |
 
 
 
 ### Association
 
-- belongs_to :user
 - belongs_to :purchase
