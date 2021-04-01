@@ -34,7 +34,7 @@ Things you may want to cover:
 | encrypted_password | string | NOT NULL    |
 | name_kanji         | string | NOT NULL    |
 | name_kana          | string | NOT NULL    |
-| birthday           | integer| NOT NULL    |
+| birthday           | date   | NOT NULL    |
 
 ### Association
 
@@ -47,15 +47,16 @@ Things you may want to cover:
 | ------------- | ---------- | ----------- |
 | item_name     | string     | NOT NULL    |
 | explanation   | integer    | NOT NULL    |
-| category      | string     | NOT NULL    |
-| condition     | string     | NOT NULL    |
-| charge        | string     | NOT NULL    |
-| prefecture    | string     | NOT NULL    |
-| number_days   | string     | NOT NULL    |
+| category_id   | integer    | NOT NULL    |
+| condition_id  | integer    | NOT NULL    |
+| charge_id     | integer    | NOT NULL    |
+| prefecture_id | integer    | NOT NULL    |
+| number_day_id | integer    | NOT NULL    |
 | price         | integer    | NOT NULL    |
+| user_id       | integer    | NOT NULL    |
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_many :items
 
 ## purchases テーブル
@@ -87,5 +88,5 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :users
-- belongs_to :purchases
+- belongs_to :user
+- belongs_to :purchase
