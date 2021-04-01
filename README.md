@@ -32,8 +32,10 @@ Things you may want to cover:
 | nickname           | string | NOT NULL    |
 | email              | string | unique: true|
 | encrypted_password | string | NOT NULL    |
-| name_kanji         | string | NOT NULL    |
-| name_kana          | string | NOT NULL    |
+| last_name          | string | NOT NULL    |
+| first_name         | string | NOT NULL    |
+| last_name_kana     | string | NOT NULL    |
+| first_name_kana    | string | NOT NULL    |
 | birthday           | date   | NOT NULL    |
 
 ### Association
@@ -57,7 +59,7 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_many :items
+- belongs_to :purchase
 
 ## purchases テーブル
 
@@ -65,11 +67,12 @@ Things you may want to cover:
 | ------------------ | ---------- | ----------- |
 | expiration_date    | integer    | NOT NULL    |
 | security_code      | integer    | NOT NULL    |
-| postal_code        | integer    | NOT NULL    |
+| postal_code        | string     | NOT NULL    |
 | municipality       | string     | NOT NULL    |
 | address            | string     | NOT NULL    |
 | building_name      | string     |             |
-| phone_number       | integer    | NOT NULL    |
+| phone_number       | string     | NOT NULL    |
+| user_purchase_id   | integer    | NOT NULL    |
 
 
 ### Association
