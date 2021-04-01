@@ -27,18 +27,19 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column     | Type   | Options     |
-| ---------- | ------ | ----------- |
-| nickname   | string | NOT NULL    |
-| email      | string | NOT NULL    |
-| password   | string | NOT NULL    |
-| name_kanji | string | NOT NULL    |
-| name_kana  | string | NOT NULL    |
+| Column             | Type   | Options     |
+| ----------------- -| ------ | ----------- |
+| nickname           | string | NOT NULL    |
+| email              | string | unique: true|
+| encrypted_password | string | NOT NULL    |
+| name_kanji         | string | NOT NULL    |
+| name_kana          | string | NOT NULL    |
+| birthday           | integer| NOT NULL    |
 
 ### Association
 
 - has_many :items
-- has_many :purchases
+- has_many :user_purchases
 
 ## items テーブル
 
@@ -46,6 +47,11 @@ Things you may want to cover:
 | ------------- | ---------- | ----------- |
 | item_name     | string     | NOT NULL    |
 | explanation   | integer    | NOT NULL    |
+| category      | string     | NOT NULL    |
+| condition     | string     | NOT NULL    |
+| charge        | string     | NOT NULL    |
+| prefecture    | string     | NOT NULL    |
+| number_days   | string     | NOT NULL    |
 | price         | integer    | NOT NULL    |
 ### Association
 
@@ -56,7 +62,6 @@ Things you may want to cover:
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-| credit_card_number | integer    | NOT NULL    |
 | expiration_date    | integer    | NOT NULL    |
 | security_code      | integer    | NOT NULL    |
 | postal_code        | integer    | NOT NULL    |
@@ -69,4 +74,18 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
+- has_many :user_purchases
+
+## user_purchases テーブル
+
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| user_id            | integer    | NOT NULL    |
+| purchase_id        | integer    | NOT NULL    |
+
+
+
+### Association
+
 - belongs_to :users
+- belongs_to :purchases
