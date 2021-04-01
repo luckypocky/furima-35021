@@ -63,10 +63,10 @@ Things you may want to cover:
 
 ## purchases テーブル
 
-| Column             | Type       | Options         |
-| ------------------ | ---------- | --------------- |
-| user_id            | integer    | foreign_key:true|
-| item_id            | integer    | foreign_key:true|
+| Column             | Type       | Options                      |
+| ------------------ | ---------- | ---------------------------- |
+| user_id            | integer    | foreign_key:true, null: false|
+| item_id            | integer    | foreign_key:true, null: false|
 
 
 ### Association
@@ -79,13 +79,15 @@ Things you may want to cover:
 
 ## addresses テーブル
 
-| Column             | Type       | Options         |
-| ------------------ | ---------- | --------------- |
-| postal_code        | string     | NOT NULL        |
-| municipality       | string     | NOT NULL        |
-| address            | string     | NOT NULL        |
-| building_name      | string     |                 |
-| phone_number       | string     | NOT NULL        |
+| Column             | Type       | Options                      |
+| ------------------ | ---------- | ---------------------------- |
+| postal_code        | string     | NOT NULL                     |
+| municipality       | string     | NOT NULL                     |
+| address            | string     | NOT NULL                     |
+| building_name      | string     |                              |
+| phone_number       | string     | NOT NULL                     |
+| prefecture_id      | integer    | NOT NULL                     |
+| purchase_id        | integer    | foreign_key:true, null: false|
 
 
 
