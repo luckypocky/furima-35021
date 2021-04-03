@@ -101,6 +101,32 @@ RSpec.describe User, type: :model do
       another_user.valid?
       expect(another_user.errors.full_messages).to include "Email has already been taken"
       end
+      it 'emailは@が含まれないと登録出来ない' do
+      @user.email = 'kkkjjj.com'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Email is invalid"
+      end  
+      it 'passwordが半角数字のみの場合は登録出来ない' do
+      @user.password = '000000'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      end 
+      it 'passwordが半角英字のみの場合は登録出来ない' do 
+      @user.password = 'aaaaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      end 
+      it 'passwordが全角の場合は登録出来ない' do 
+      @user.password = 'ああああああ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      end 
+      it 'passwordとpassword_confirmationが一致しない場合は登録出来ない' do
+      @user.password = '000aaa'
+      @user.password = '00aaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include  "Password confirmation doesn't match Password"
+      end 
       it 'passwordが5文字以下では登録できない' do
       @user.password = '00aaa'
       @user.password_confirmation = '00aaa'
