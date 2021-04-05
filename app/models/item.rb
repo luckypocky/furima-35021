@@ -14,11 +14,13 @@ class Item < ApplicationRecord
     validates :image
     validates :item_name
     validates :explanation
-    validates :category_id, numericality: { other_than: 1 } 
-    validates :condition_id, numericality: { other_than: 1 }
-    validates :charge_id, numericality: { other_than: 1 }
-    validates :prefecture_id, numericality: { other_than: 1 }
-    validates :numberday_id, numericality: { other_than: 1 }
+    with_options numericality: { other_than: 1 }  do
+      validates :category_id 
+      validates :condition_id
+      validates :charge_id
+      validates :prefecture_id
+      validates :numberday_id
+    end  
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   end
 
