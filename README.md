@@ -53,7 +53,7 @@ Things you may want to cover:
 | condition_id  | integer    | NOT NULL                      |
 | charge_id     | integer    | NOT NULL                      |
 | prefecture_id | integer    | NOT NULL                      |
-| number_day_id | integer    | NOT NULL                      |
+| numberday_id | integer    | NOT NULL                      |
 | price         | integer    | NOT NULL                      |
 | user_id       | integer    | foreign_key:true, null: false |
 ### Association
