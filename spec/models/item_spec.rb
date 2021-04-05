@@ -9,16 +9,18 @@ RSpec.describe Item, type: :model do
     context '商品を出品できる場合' do
       it '全ての情報があれば出品できる' do
         expect(@item).to be_valid
-      end
-      it '出品できる' do
-      end
-      
+      end  
     end
     context '商品を出品できない場合' do
-      it 'iamgeが空だと出品できない' do
+      it '商品が空だと出品できない' do
         @item.item_name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Item name can't be blank"
+      end
+      it 'iamgeが空だと出品できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Image can't be blank"
       end     
       it 'explanationが空だと出品できない' do
         @item.explanation = ''
