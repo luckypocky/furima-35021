@@ -1,11 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :making, only: [:index, :creat]
+  before_action :or_or, only: [:index, :create]
 
   def index
-    if @item.order.present? || @item.user_id == current_user.id
-      redirect_to root_path
-    end
     @order_address = OrderAddress.new
   end  
 
@@ -37,7 +35,13 @@ class OrdersController < ApplicationController
       card: order_params[:token],    
       currency: 'jpy'                 
     )
-  end    
+  end  
+  
+  def or_or
+    if @item.order.present? || @item.user_id == current_user.id
+      redirect_to root_path
+    end
+  end  
 
   
    
