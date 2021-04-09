@@ -8,3 +8,4 @@ window.addEventListener('load', () => {
     addProfitDom.innerHTML = Math.floor(inputValue-addTaxDom.innerHTML);
 })
 });
+
